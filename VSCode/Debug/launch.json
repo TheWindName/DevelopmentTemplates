@@ -1,0 +1,19 @@
+{
+    "configurations": [
+        {
+            "name": "Docker: Python Debug",
+            "type": "docker",
+            "request": "launch",
+            "preLaunchTask": "docker-run-debug",
+            "python": {
+                "pathMappings": [
+                    {
+                        "localRoot": "${workspaceFolder}", // Host path
+                        "remoteRoot": "/app" // The container path
+                    }
+                ],
+                "projectType": "general"
+            }
+        }
+    ]
+}

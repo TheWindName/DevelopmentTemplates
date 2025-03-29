@@ -1,0 +1,34 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "docker-run",
+            "label": "docker-run-debug",
+            "dependsOn": [
+                "docker-build"
+            ],
+            "dockerRun": {
+                "PYTHONPATH": "${PYTHONPATH}", // For example: "PYTHONPATH": "${PYTHONPATH}:/business:/entities:/job",
+                "containerName": "ContainerName", // For example: "containerName": "telegram-bot-cooking",
+                "image": "ImageName:tag", // For example: "image": "my-application:test",
+                "env": {
+                    "VARIABLE_NAME": "VARIABLE_VALUE"
+                }
+            },
+            "python": {
+                "file": "PythonEntryFilePathTo" // For example: "file": "job/startup.py"
+			}
+        },
+        {
+            "label": "docker-build",
+            "type": "docker-build",
+            "platform": "python",
+            "dockerBuild": {
+                "context": "${workspaceFolder}",
+                "dockerfile": "${workspaceFolder}/DockerFilePathTo", // For example: "dockerfile": "${workspaceFolder}/Dockerfile",
+                "tag": "docker_tag:tag", // For example: "tag": "my-application:test",
+				"pull": true
+            }
+        }
+    ]
+}
